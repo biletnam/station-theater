@@ -43,7 +43,7 @@ class ProductionRole
 
     public function __toString()
     {
-        return $this->getTitle();
+        return $this->getTitle() ?: 'Unnamed Role';
     }
 
     /**
@@ -99,7 +99,7 @@ class ProductionRole
         return $this->companyMember;
     }
 
-    public function setCompanyMember(CompanyMember $companyMember): void {
+    public function setCompanyMember(?CompanyMember $companyMember): void {
         $this->companyMember = $companyMember;
     }
 
@@ -107,7 +107,7 @@ class ProductionRole
         return $this->production;
     }
 
-    public function setProduction(Production $production): void {
+    public function setProduction(?Production $production): void {
         $this->production = $production;
     }
 }

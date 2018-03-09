@@ -93,13 +93,13 @@ class Production
     private $photo;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ProductionRole", mappedBy="production")
+     * @ORM\OneToMany(targetEntity="App\Entity\ProductionRole", mappedBy="production", cascade={"persist"})
      * @var ArrayCollection
      */
     private $productionRoles;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ProductionReview", mappedBy="production")
+     * @ORM\OneToMany(targetEntity="App\Entity\ProductionReview", mappedBy="production", cascade={"persist"})
      * @var ArrayCollection
      */
     private $productionReviews;

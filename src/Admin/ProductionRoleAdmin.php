@@ -22,13 +22,16 @@ class ProductionRoleAdmin extends AbstractAdmin
             'expanded' => true
         ]);
         $form->add('isStarring');
-        $form->add('companyMember');
+        $form->add('companyMember', null, [
+            'required' => true
+        ]);
     }
 
     protected function configureListFields(ListMapper $list)
     {
         $list->add('title');
         $list->add('production');
+        $list->add('companyMember');
         $list->add('_action', null, [
             'actions' => [
                 'show' => [],

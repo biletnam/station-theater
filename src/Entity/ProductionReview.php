@@ -93,7 +93,7 @@ class ProductionReview {
         return $this->production;
     }
 
-    public function setProduction(Production $production): void {
+    public function setProduction(?Production $production): void {
         $this->production = $production;
     }
 }

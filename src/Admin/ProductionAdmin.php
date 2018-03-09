@@ -6,9 +6,6 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\ModelAutocompleteType;
-use Sonata\AdminBundle\Form\Type\ModelListType;
-use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\CoreBundle\Form\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -36,17 +33,17 @@ class ProductionAdmin extends AbstractAdmin
         $form->add('photo', UrlType::class, [
             'required' => false
         ]);
-        $form->add('productionRoles', ModelAutocompleteType::class, [
-            'property' => 'title',
-            'multiple' => true,
-            'btn_add' => 'Add new',
-            'required' => false
+        $form->add('productionRoles', CollectionType::class, [
+            'by_reference' => false
+        ], [
+            'edit' => 'inline',
+            'inline' => 'table'
         ]);
-        $form->add('productionReviews', ModelAutocompleteType::class, [
-            'property' => 'quote',
-            'multiple' => true,
-            'btn_add' => 'Add new',
-            'required' => false
+        $form->add('productionReviews', CollectionType::class, [
+            'by_reference' => false
+        ], [
+            'edit' => 'inline',
+            'inline' => 'table'
         ]);
     }
 
