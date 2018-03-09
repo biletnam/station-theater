@@ -7,8 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductionReviewRepository")
  */
-class ProductionReview
-{
+class ProductionReview {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -22,7 +21,7 @@ class ProductionReview
     private $quote;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $url;
 
@@ -30,6 +29,11 @@ class ProductionReview
      * @ORM\Column(type="string")
      */
     private $attribution;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Production", inversedBy="productionReviews", cascade={"persist"})
+     */
+    private $production;
 
     /**
      * @return mixed
@@ -78,5 +82,13 @@ class ProductionReview
      */
     public function setAttribution($attribution): void {
         $this->attribution = $attribution;
+    }
+
+    public function getProduction(): Production {
+        return $this->production;
+    }
+
+    public function setProduction(Production $production): void {
+        $this->production = $production;
     }
 }

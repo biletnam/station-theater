@@ -32,6 +32,16 @@ class ProductionRole
     private $isStarring;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CompanyMember", inversedBy="productionRoles", cascade={"persist"})
+     */
+    private $companyMember;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Production", inversedBy="productionRoles", cascade={"persist"})
+     */
+    private $production;
+
+    /**
      * @return mixed
      */
     public function getId() {
@@ -78,5 +88,21 @@ class ProductionRole
      */
     public function setIsStarring($isStarring): void {
         $this->isStarring = $isStarring;
+    }
+
+    public function getCompanyMember():CompanyMember {
+        return $this->companyMember;
+    }
+
+    public function setCompanyMember(CompanyMember $companyMember): void {
+        $this->companyMember = $companyMember;
+    }
+
+    public function getProduction(): Production {
+        return $this->production;
+    }
+
+    public function setProduction(Production $production): void {
+        $this->production = $production;
     }
 }

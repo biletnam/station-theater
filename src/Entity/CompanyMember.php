@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CompanyMemberRepository")
  */
-class CompanyMember
-{
+class CompanyMember {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -22,14 +22,24 @@ class CompanyMember
     private $name;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $biography;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $photo;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ProductionRole", mappedBy="companyMember")
+     * @var ArrayCollection
+     */
+    private $productionRoles;
+
+    public function __construct() {
+        $this->productionRoles = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -78,5 +88,21 @@ class CompanyMember
      */
     public function setPhoto($photo): void {
         $this->photo = $photo;
+    }
+
+    public function getProductionRoles(): ArrayCollection {
+        return $this->productionRoles;
+    }
+
+    public function addProductionRole(ProductionRole $productionRole) {
+        if ($this->productionRoles->contains($productionRole))
+            return;
+        $this->productionRoles[] = $productionRole;
+        $productionRole->setCompanyMember($this);
+    }
+
+    public function removeProductionRole(ProductionRole $productionRole) {
+        $this->productionRoles->removeElement($productionRole);
+        $productionRole->setCompanyMember(null);
     }
 }

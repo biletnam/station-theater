@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,32 +33,32 @@ class Production
     private $directors;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $settingTime;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $intermission;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $poster;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $directorsNote;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $specialThanks;
 
@@ -72,24 +73,41 @@ class Production
     private $endDate;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $season;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $scriptQuote;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $scriptQuoteAttribution;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $photo;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ProductionRole", mappedBy="production")
+     * @var ArrayCollection
+     */
+    private $productionRoles;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ProductionReview", mappedBy="production")
+     * @var ArrayCollection
+     */
+    private $productionReviews;
+
+    public function __construct() {
+        $this->productionRoles = new ArrayCollection();
+        $this->productionReviews = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -306,5 +324,37 @@ class Production
      */
     public function setPhoto($photo): void {
         $this->photo = $photo;
+    }
+
+    public function getProductionRoles(): ArrayCollection {
+        return $this->productionRoles;
+    }
+
+    public function addProductionRole(ProductionRole $productionRole) {
+        if ($this->productionRoles->contains($productionRole))
+            return;
+        $this->productionRoles[] = $productionRole;
+        $productionRole->setProduction($this);
+    }
+
+    public function removeProductionRole(ProductionRole $productionRole) {
+        $this->productionRoles->removeElement($productionRole);
+        $productionRole->setProduction(null);
+    }
+
+    public function getProductionReviews(): ArrayCollection {
+        return $this->productionReviews;
+    }
+
+    public function addProductionReview(ProductionReview $productionReview) {
+        if ($this->productionReviews->contains($productionReview))
+            return;
+        $this->productionReviews[] = $productionReview;
+        $productionReview->setProduction($this);
+    }
+
+    public function removeProductionReview(ProductionReview $productionReview) {
+        $this->productionReviews->removeElement($productionReview);
+        $productionReview->setProduction(null);
     }
 }
