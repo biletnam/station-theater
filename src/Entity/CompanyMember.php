@@ -30,4 +30,53 @@ class CompanyMember
      * @ORM\Column(type="string")
      */
     private $photo;
+
+    /**
+     * @return mixed
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName() {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name): void {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBiography() {
+        return $this->biography;
+    }
+
+    /**
+     * @param mixed $biography
+     */
+    public function setBiography($biography): void {
+        $this->biography = $biography;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhoto() {
+        return $this->photo;
+    }
+
+    /**
+     * @param mixed $photo
+     */
+    public function setPhoto($photo): void {
+        $this->photo = $photo;
+    }
 }
