@@ -12,8 +12,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $productions = $this->getDoctrine()->getRepository('App:Production')->findAll();
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'productions' => $productions
         ]);
     }
 }
