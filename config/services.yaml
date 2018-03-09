@@ -26,3 +26,29 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    admin.company_member:
+        class: App\Admin\CompanyMemberAdmin
+        arguments: [~, App\Entity\CompanyMember, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Company Member, group: Theatre, icon: "<i class='fa fa-folder'></i>" }
+        public: true
+
+    admin.production_role:
+        class: App\Admin\ProductionRoleAdmin
+        arguments: [~, App\Entity\ProductionRole, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Production Role, group: Theatre }
+        public: true
+
+    admin.production_review:
+        class: App\Admin\ProductionReviewAdmin
+        arguments: [~, App\Entity\ProductionReview, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Production Review, group: Theatre }
+
+    admin.production:
+        class: App\Admin\ProductionAdmin
+        arguments: [~, App\Entity\Production, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Production, group: Theatre }

@@ -41,6 +41,11 @@ class ProductionRole
      */
     private $production;
 
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
     /**
      * @return mixed
      */
@@ -90,7 +95,7 @@ class ProductionRole
         $this->isStarring = $isStarring;
     }
 
-    public function getCompanyMember():CompanyMember {
+    public function getCompanyMember():?CompanyMember {
         return $this->companyMember;
     }
 
@@ -98,7 +103,7 @@ class ProductionRole
         $this->companyMember = $companyMember;
     }
 
-    public function getProduction(): Production {
+    public function getProduction():?Production {
         return $this->production;
     }
 

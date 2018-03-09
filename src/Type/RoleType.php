@@ -23,7 +23,7 @@ class RoleType extends StringType {
         return 'role';
     }
 
-    public function getChoices() {
+    public static function getChoices() {
         return [
             "Cast" => self::CAST,
             "Crew" => self::CREW

@@ -41,6 +41,11 @@ class CompanyMember {
         $this->productionRoles = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     /**
      * @return mixed
      */
@@ -90,7 +95,7 @@ class CompanyMember {
         $this->photo = $photo;
     }
 
-    public function getProductionRoles(): ArrayCollection {
+    public function getProductionRoles() {
         return $this->productionRoles;
     }
 

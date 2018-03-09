@@ -35,6 +35,11 @@ class ProductionReview {
      */
     private $production;
 
+    public function __toString()
+    {
+        return $this->getQuote() ?: 'Blank Review';
+    }
+
     /**
      * @return mixed
      */
@@ -84,7 +89,7 @@ class ProductionReview {
         $this->attribution = $attribution;
     }
 
-    public function getProduction(): Production {
+    public function getProduction(): ?Production {
         return $this->production;
     }
 

@@ -23,12 +23,12 @@ class Production
     private $title;
 
     /**
-     * @ORM\Column(type="simple_array")
+     * @ORM\Column(type="string")
      */
     private $playwrights;
 
     /**
-     * @ORM\Column(type="simple_array")
+     * @ORM\Column(type="string")
      */
     private $directors;
 
@@ -73,7 +73,7 @@ class Production
     private $endDate;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $season;
 
@@ -104,256 +104,287 @@ class Production
      */
     private $productionReviews;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->productionRoles = new ArrayCollection();
         $this->productionReviews = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle() ?: 'Untitled Production';
     }
 
     /**
      * @return mixed
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
     /**
      * @return mixed
      */
-    public function getTitle() {
+    public function getTitle()
+    {
         return $this->title;
     }
 
     /**
      * @param mixed $title
      */
-    public function setTitle($title): void {
+    public function setTitle($title): void
+    {
         $this->title = $title;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPlaywrights() {
+    public function getPlaywrights()
+    {
         return $this->playwrights;
     }
 
-    /**
-     * @param mixed $playwrights
-     */
-    public function setPlaywrights($playwrights): void {
+    public function setPlaywrights($playwrights): void
+    {
         $this->playwrights = $playwrights;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDirectors() {
+    public function getDirectors()
+    {
         return $this->directors;
     }
 
-    /**
-     * @param mixed $directors
-     */
-    public function setDirectors($directors): void {
+    public function setDirectors($directors): void
+    {
         $this->directors = $directors;
     }
 
     /**
      * @return mixed
      */
-    public function getDescription() {
+    public function getDescription()
+    {
         return $this->description;
     }
 
     /**
      * @param mixed $description
      */
-    public function setDescription($description): void {
+    public function setDescription($description): void
+    {
         $this->description = $description;
     }
 
     /**
      * @return mixed
      */
-    public function getSettingTime() {
+    public function getSettingTime()
+    {
         return $this->settingTime;
     }
 
     /**
      * @param mixed $settingTime
      */
-    public function setSettingTime($settingTime): void {
+    public function setSettingTime($settingTime): void
+    {
         $this->settingTime = $settingTime;
     }
 
     /**
      * @return mixed
      */
-    public function getIntermission() {
+    public function getIntermission()
+    {
         return $this->intermission;
     }
 
     /**
      * @param mixed $intermission
      */
-    public function setIntermission($intermission): void {
+    public function setIntermission($intermission): void
+    {
         $this->intermission = $intermission;
     }
 
     /**
      * @return mixed
      */
-    public function getPoster() {
+    public function getPoster()
+    {
         return $this->poster;
     }
 
     /**
      * @param mixed $poster
      */
-    public function setPoster($poster): void {
+    public function setPoster($poster): void
+    {
         $this->poster = $poster;
     }
 
     /**
      * @return mixed
      */
-    public function getDirectorsNote() {
+    public function getDirectorsNote()
+    {
         return $this->directorsNote;
     }
 
     /**
      * @param mixed $directorsNote
      */
-    public function setDirectorsNote($directorsNote): void {
+    public function setDirectorsNote($directorsNote): void
+    {
         $this->directorsNote = $directorsNote;
     }
 
     /**
      * @return mixed
      */
-    public function getSpecialThanks() {
+    public function getSpecialThanks()
+    {
         return $this->specialThanks;
     }
 
     /**
      * @param mixed $specialThanks
      */
-    public function setSpecialThanks($specialThanks): void {
+    public function setSpecialThanks($specialThanks): void
+    {
         $this->specialThanks = $specialThanks;
     }
 
     /**
      * @return mixed
      */
-    public function getStartDate() {
+    public function getStartDate()
+    {
         return $this->startDate;
     }
 
     /**
      * @param mixed $startDate
      */
-    public function setStartDate($startDate): void {
+    public function setStartDate($startDate): void
+    {
         $this->startDate = $startDate;
     }
 
     /**
      * @return mixed
      */
-    public function getEndDate() {
+    public function getEndDate()
+    {
         return $this->endDate;
     }
 
     /**
      * @param mixed $endDate
      */
-    public function setEndDate($endDate): void {
+    public function setEndDate($endDate): void
+    {
         $this->endDate = $endDate;
     }
 
     /**
      * @return mixed
      */
-    public function getSeason() {
+    public function getSeason()
+    {
         return $this->season;
     }
 
     /**
      * @param mixed $season
      */
-    public function setSeason($season): void {
+    public function setSeason($season): void
+    {
         $this->season = $season;
     }
 
     /**
      * @return mixed
      */
-    public function getScriptQuote() {
+    public function getScriptQuote()
+    {
         return $this->scriptQuote;
     }
 
     /**
      * @param mixed $scriptQuote
      */
-    public function setScriptQuote($scriptQuote): void {
+    public function setScriptQuote($scriptQuote): void
+    {
         $this->scriptQuote = $scriptQuote;
     }
 
     /**
      * @return mixed
      */
-    public function getScriptQuoteAttribution() {
+    public function getScriptQuoteAttribution()
+    {
         return $this->scriptQuoteAttribution;
     }
 
     /**
      * @param mixed $scriptQuoteAttribution
      */
-    public function setScriptQuoteAttribution($scriptQuoteAttribution): void {
+    public function setScriptQuoteAttribution($scriptQuoteAttribution): void
+    {
         $this->scriptQuoteAttribution = $scriptQuoteAttribution;
     }
 
     /**
      * @return mixed
      */
-    public function getPhoto() {
+    public function getPhoto()
+    {
         return $this->photo;
     }
 
     /**
      * @param mixed $photo
      */
-    public function setPhoto($photo): void {
+    public function setPhoto($photo): void
+    {
         $this->photo = $photo;
     }
 
-    public function getProductionRoles(): ArrayCollection {
+    public function getProductionRoles()
+    {
         return $this->productionRoles;
     }
 
-    public function addProductionRole(ProductionRole $productionRole) {
+    public function addProductionRole(ProductionRole $productionRole)
+    {
         if ($this->productionRoles->contains($productionRole))
             return;
         $this->productionRoles[] = $productionRole;
         $productionRole->setProduction($this);
     }
 
-    public function removeProductionRole(ProductionRole $productionRole) {
+    public function removeProductionRole(ProductionRole $productionRole)
+    {
         $this->productionRoles->removeElement($productionRole);
         $productionRole->setProduction(null);
     }
 
-    public function getProductionReviews(): ArrayCollection {
+    public function getProductionReviews()
+    {
         return $this->productionReviews;
     }
 
-    public function addProductionReview(ProductionReview $productionReview) {
+    public function addProductionReview(ProductionReview $productionReview)
+    {
         if ($this->productionReviews->contains($productionReview))
             return;
         $this->productionReviews[] = $productionReview;
         $productionReview->setProduction($this);
     }
 
-    public function removeProductionReview(ProductionReview $productionReview) {
+    public function removeProductionReview(ProductionReview $productionReview)
+    {
         $this->productionReviews->removeElement($productionReview);
         $productionReview->setProduction(null);
     }
